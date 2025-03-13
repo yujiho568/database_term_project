@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Post</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <style>
+        #map {
+            height: 400px;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <h1>정보 등록</h1>
+    <form action="/create_post" method="post">
+        <label for="location">위치:</label>
+        <input type="text" id="location" name="location" required>
+        <br>
+        <br>
+        <label for="description">줄거리:</label>
+        <textarea id="description" name="description" required></textarea>
+        <br>
+        <label for="people_count">인원 수:</label>
+        <input type="number" id="people_count" name="people_count" required>
+        <br>
+        <input type="hidden" id="latitude" name="latitude">
+        <input type="hidden" id="longitude" name="longitude">
+        <div id="map"></div>
+        <button type="submit">작성</button>
+    </form>
+
+    <script>
+        // Initialize the map
+        var map = L.map('map').setView([35.2327, 129.0828], 18);
+
+        // Add OpenStreetMap tiles
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Add a marker on click
+        var marker;
+        map.on('click', function (e) {
+            var lat = e.latlng.lat;
+            var lng = e.latlng.lng;
+
+            // Update the hidden input fields
+            document.getElementById('latitude').value = lat;
+            document.getElementById('longitude').value = lng;
+
+            // Add or move the marker
+            if (marker) {
+                marker.setLatLng(e.latlng);
+            } else {
+                marker = L.marker(e.latlng).addTo(map);
+            }
+        });
+    </script>
+</body>
+</html>

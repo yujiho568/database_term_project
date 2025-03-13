@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+</head>
+<body>
+    <h1>Users</h1>
+    <h2>By 신뢰 점수 </h2>
+    <table border="1">
+        <tr>
+            <th>User_id</th>
+            <th>email</th>
+            <th>Trust_score</th>
+            <th>is_honored</th>
+            <th>Select</th>
+        </tr>
+        {% for user in user_by_trust %}
+        <tr>
+            <td>{{ user[0] }}</td>
+            <td>{{ user[1] }}</td>
+            <td>{{ user[2] }}</td>
+            <td>{{ user[3] }}</td>
+            <td>
+                {%if session.get('user_role') == 'admin'%}
+                <form action="/honor_user/{{ user[0] }}" method="POST" style="display:inline;">
+                    <button type="submit" onclick="return confirm('Are you sure you want to honor this user?')">Honor</button>
+                </form>
+                {% endif %}
+                {% if session.get('user_role') == 'analyst' %}
+                <form action="/grant_analyst/{{ user[0] }}" method="POST" style="display:inline;">
+                    <button type="submit" onclick="return confirm('Are you sure you want to grant rights to this user?')">Grant privileges</button>
+                </form>
+            {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <h2>By 신고 누적</h2>
+    <table border="1">
+        <tr>
+            <th>User_id</th>
+            <th>email</th>
+            <th>Reported_score</th>
+
+        </tr>
+        {% for user in user_by_reported %}
+        <tr>
+            <td>{{ user[0] }}</td>
+            <td>{{ user[1] }}</td>
+            <td>{{ user[2] }}</td>
+
+        </tr>
+        {% endfor %}
+    </table>
+
+
+</body>
+</html>
