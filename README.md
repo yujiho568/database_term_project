@@ -1,8 +1,8 @@
-1.	프로젝트 주제 (Project topic)
+##1.	프로젝트 주제 (Project topic)
 
 부산대학교 근처의 종교활동 권유 및 설문조사 관련 정보를 공유하기 위한 웹사이트를 만든다. 사용자는 회원가입을 진행하고, 해당 설문조사나 종교활동 권유를 당한 위치, 인원, 말하는 줄거리, 시각을 사이트에 공유하고, 지도에 나타내고 이를 데이터베이스에 저장 또는 갱신한다. 사이트에서 이 정보를 공유한다. 해당 정보에 대한 수정, 댓글 기능 및 공감기능도 만든다.
 
-2.	사용자 (역할) (Users / Roles)
+##2.	사용자 (역할) (Users / Roles)
 
 해당 웹사이트를 이용하는 사용자로는 guest, user, admin이 있다.
 Guest는 회원가입을 진행하지 않은 사용자로 정보열람에 제한이 있다.
@@ -10,7 +10,7 @@ User는 회원가입을 한 사용자로 정보 공유 및 게시글, 댓글 작
 Admin은 관리자로 부적절한 정보 및 댓글 삭제와 회원 관리를 할 수 있다. 
 
 
-3.	기능 (Functions)
+##3.	기능 (Functions)
 
 guest
 -	회원가입 : 사이트에 회원가입을 한다. 
@@ -32,7 +32,7 @@ admin
 -	댓글 삭제 : reported가 일정 개수를 넘기면 해당 댓글을 부적절하다고 판단해 삭제한다.
 
 
-4.	데이터베이스 스키마 (Database schema)
+##4.	데이터베이스 스키마 (Database schema)
 
 User(user_id, username, password, email, , reported, role, created_at)
 -	Primary key : user_id
